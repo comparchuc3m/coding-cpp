@@ -1,0 +1,20 @@
+\subsection{Rules to avoid common mistakes}
+
+All these rules are under category
+\cppid{cppcoreguidelines}.
+
+For the rules in this category, the following options shall be considered:
+
+\begin{itemize}
+
+\item \cppid{bugprone-easily-swappable-parameters}: 
+Functions taking 4 or more parameters from the same type shall be defined.
+
+\item \cppid{bugprone-implicit-widening-of-multiplication-result}: 
+A \cppkey{static\_cast<>} shall be used to convert to a wider type.
+If needed file \cppid{<cstddef>} shall be included.
+
+\item \cppid{bugprone-misplaced-widening-cast}: 
+When widening implicit conversions shall be considered.
+
+\end{itemize}
