@@ -1,0 +1,36 @@
+\section{Reglas de codificación}
+
+Como regla general, se recomienda tener en cuenta las \textmark{C++ Core
+Guidelines} (disponible en 
+\url{http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines}).
+No obstante, estas reglas no son de obligado cumplimiento.
+
+La descripción detalladas de las reglas comprobadas por \cppid{clang-tidy}
+se puede encontrar en la página
+\url{https://clang.llvm.org/extra/clang-tidy/checks/list.html}.
+
+Para comprobar automáticamente el cumplimiento de las reglas se puede usar
+una configuración como la siguiente:
+
+\lstinputlisting{int/.clang-tidy}
+
+Para comprobar el cumplimiento de las reglas se puede situar el archivo
+\textemph{.clang-tidy} en el directorio raíz de su proyecto. La mayoría de los
+entornos de desarrollo reconocerán el archivo y realizarán las comprobaciones.
+
+También puede consultar otras formas de aplicar el formato en la documentación
+de la herramienta:
+\url{https://clang.llvm.org/extra/clang-tidy/index.html}.
+
+A continuación se especifican un conjunto de reglas que si deben cumplirse.
+
+\input{es/doc/rules/general}
+
+\input{es/doc/rules/bugprone}
+\input{es/doc/rules/cert}
+\input{es/doc/rules/cppcoreguidelines}
+\input{es/doc/rules/hicpp}
+\input{es/doc/rules/misc}
+\input{es/doc/rules/modernize}
+\input{es/doc/rules/performance}
+\input{es/doc/rules/readability}

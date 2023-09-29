@@ -1,6 +1,8 @@
 ES_DOC_BASE=doc
 ES_DOC_DIR=$(ES_DIR)/$(ES_DOC_BASE)
-ES_DOC_PARTS=$(ES_DOC_DIR)/*.tex
+ES_DOC_PARTS= \
+  $(ES_DOC_DIR)/*.tex \
+  $(ES_DOC_DIR)/rules/*.tex
 
 ES_DOC_PDF=es-$(ES_DOC_BASE).pdf
 

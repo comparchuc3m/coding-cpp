@@ -1,0 +1,30 @@
+\subsection{Reglas generales}
+
+En general se cumplirán los siguientes principios:
+
+\begin{itemize}
+
+\item No se podrán utilizar variables globales que no sean constantes.
+
+\item No se podrá pasar arrays a una función como parámetros de tipo puntero.
+
+\item Ninguna función ni función miembro podrá tener más de cuatro parámetros.
+
+\item Ninguna función podrá tener más de 25 líneas estando apropiadamente
+formateadas.
+
+\item Todos los parámetros se pasarán a las funciones por valor, por referencia
+o por referencia constante.
+
+\item No se podrá usar explicitamente las funciones \cppid{malloc()}
+o \cppid{free()} ni los operadores \cppkey{new} o \cppkey{delete}.
+
+\item No se permite el uso de macros, excepto para la definición de guardas de inclusión.
+
+\item No se permite ningún cast excepto \cppkey{static\_cast}, \cppkey{dynamic\_cast}
+\cppkey{const\_cast}.
+
+\item Solamente se podrá usar \cppkey{reinterpret\_cast} en el paso de parámetros a funciones
+de la biblioteca estándar (p.ej \cppid{read()} o \cppid{write}).
+
+\end{itemize}
