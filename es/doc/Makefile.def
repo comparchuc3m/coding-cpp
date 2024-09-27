@@ -4,7 +4,7 @@ ES_DOC_PARTS= \
   $(ES_DOC_DIR)/*.tex \
   $(ES_DOC_DIR)/rules/*.tex
 
-ES_DOC_PDF=es-$(ES_DOC_BASE).pdf
+ES_DOC_PDF=es-$(ES_DOC_BASE)-coding.pdf
 
 FINAL_ES_DOC_PDF=$(FINAL_DIR)/$(ES_DOC_PDF)
 
