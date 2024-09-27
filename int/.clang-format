@@ -17,7 +17,8 @@ AlignConsecutiveDeclarations: None
 AlignConsecutiveMacros: None
 AlignEscapedNewlines:  Left
 AlignOperands: Align
-AlignTrailingComments: Always
+AlignTrailingComments:
+  Kind: Always
 AllowAllArgumentsOnNextLine: true
 AllowAllConstructorInitializersOnNextLine: true
 AllowAllParametersOfDeclarationOnNextLine: false
