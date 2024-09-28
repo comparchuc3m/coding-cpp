@@ -7,6 +7,20 @@ opciones:
 
 \begin{itemize}
 
+\item \cppid{bugprone-assert-side-effect}:
+Se evitarán efectos laterales en evaluación de aserciones con \cppid{assert}.
+También se evitarán efectos laterales con las aserciones de \textmark{GLS} 
+\cppid{Expects} y \cppid{Ensures}.
+
+\item \cppid{bugprone-assignment-in-if-condition}:
+No se realizarán asignaciones dentro de las condiciones de sentencias \cppkey{if}.
+
+\item \cppid{bugprone-bool-pointer-implicit-conversion}:
+No se realizarán conversiones implícitas de \cppkey{bool*} a \cppkey{bool}.
+
+\item \cppid{bugprone-casting-through-void}:
+No se realizarán conversiones que involucren \cppkey{void*}.
+
 \item \cppid{bugprone-easily-swappable-parameters}: No se podrá pasar a una
 función 4 o más parámetros del mismo tipo.
 
@@ -17,5 +31,8 @@ de mayor tamaño. Si fuese necesario se incluirá el archivo de cabecera
 
 \item \cppid{bugprone-misplaced-widening-cast}: Se tendrán en cuenta las
 conversiones implícitas.
+
+\item \cppid{bugprone-switch-missing-default-case}:
+Una sentencia \cppkey{switch} siempre tendrá una alternativa \cppkey{default}.
 
 \end{itemize}
