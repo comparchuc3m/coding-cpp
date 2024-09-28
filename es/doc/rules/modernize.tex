@@ -2,10 +2,11 @@
 
 Todas estas reglas se encuentran bajo la categoría \cppid{modernize}.
 
-\textbad{EXCEPCIÓN}: No se activará la siguiente regla:
+\textbad{EXCEPCIÓN}: No se activarán la siguiente regla:
 \begin{itemize}
 
 \item \cppid{modernize-use-trailing-return-type}.
+\item \cppid{modernize-use-designated-initializers}.
 
 \end{itemize}
 
@@ -16,5 +17,18 @@ opciones:
 
 \item \cppid{modernize-deprecated-headers}:
 Se requieren solamente archivos de cabecera de C++.
+
+\item \cppid{modernize-make-shared}:
+No se iniciará un \cppid{shared\_ptr} a partir de \cppkey{new}.
+Se sugiere el uso de \cppid{make\_shared}.
+
+\item \cppid{modernize-make-unique}:
+No se iniciará un \cppid{unique\_ptr} a partir de \cppkey{new}.
+Se sugiere el uso de \cppid{make\_unique}.
+
+\item \cppid{modernize-use-nullptr}:
+No se utilizará la macro \cppid{NULL}.
+En su lugar se usará \cppkey{nullptr}.
+
 
 \end{itemize}
