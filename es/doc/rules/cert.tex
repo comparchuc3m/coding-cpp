@@ -1,3 +1,16 @@
 \subsection{Reglas de CERT C++ Secure Coding}
 
 Todas estas reglas se encuentran bajo la categoría \cppid{cert}.
+
+\begin{itemize}
+
+\item \cppid{cert-err34-c}:
+No se utilizarán funciones de conversión de cadena a número que no
+verifiquen la validez de la conversión como \cppid{atoi()} o \cppid{sscanf()}.
+
+\item \cppid{cert-oop57-cpp}:
+No se utilizarán las funciones de la biblioteca estándar de C
+\cppid{memset()}, \cppid{memcpy()}, \cppid{memcmp()} y similares
+sobre tipos no triviales.
+
+\end{itemize}
