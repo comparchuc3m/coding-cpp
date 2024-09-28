@@ -7,8 +7,90 @@ opciones:
 
 \begin{itemize}
 
+\item \cppid{cppcoreguidelines-avoid-const-or-ref-data-members}:
+No se definirán datos miembro que sean \cppkey{const} o de tipo referencia.
+
+\item \cppid{cppcoreguidelines-avoid-do-while}:
+No se utilizarán bucles del tipo \cppkey{do-while}.
+
+\item \cppid{cppcoreguidelines-avoid-goto}:
+No se utilizará \cppkey{goto} excepto para salir de bucles anidados
+a sentencias posteriores.
+
+\item \cppid{cppcoreguidelines-avoid-non-const-global-variables}:
+No se definirán variables globales a menos que sean constantes.
+
+\item \cppid{cppcoreguidelines-init-variables}:
+No se definirán variables locales sin darles un valor inicial.
+
+\item \cppid{cppcoreguidelines-interfaces-global-init}:
+No se realizarán iniciaciones globales que requieran acceso a objetos externos.
+
+\item \cppid{cppcoreguidelines-macro-usage}:
+No se utilizarán macros.
+
+\item \cppid{cppcoreguidelines-narrowing-conversions}:
+No se permitiran conversines estrechadores (\emph{narrowing}) que 
+potencialmente puedan causar pérdida de información.
+
+\item \cppid{cppcoreguidelines-no-malloc}:
+No se realizarán invocaciónes a
+\cppid{malloc()}, \cppid{realloc()}, \cppid{calloc()} o \cppid{free()}.
+
+\item \cppid{cppcoreguidelines-prefer-member-initializer}:
+Se preferirá la iniciación en la secuencia de iniciación del constructor
+antes que la iniciación en el cuerpo del constructor.
+
+\end{itemize}
+
+\subsubsection{Reglas específicas sobre comprobación de límites}
+
+\begin{itemize}
+
+\item \cppid{cppcoreguidelines-pro-bounds-array-to-pointer-decay}:
+Se evitará la conversión implícita de un array en un puntero.
+Se puede utilizar \cppid{std:span<T>} o \cppid{gsl::span<T>}
+como alterantiva.
+
+\item \cppid{cppcoreguidelines-pro-bounds-constant-array-index}:
+No se realizará un acceso a una posición de un array primitivo
+o un \cppid{std::array} que no sea una expresión conocida en
+tiempo de compilación. Como alternativa, se puede utilizar
+\cppid{gsl::at()}.
+
+\item \cppid{cppcoreguidelines-pro-bounds-pointer-arithmetic}:
+No se podrá utilizar aritmética de punteros.
+
+\end{itemize}
+
+\subsubsection{Reglas específicas sobre seguridad de tipos}
+
+\begin{itemize}
+
+\item \cppid{cppcoreguidelines-pro-type-const-cast}:
+No se podrá utilizar \cppkey{const\_cast<>}.
+
+\item \cppid{cppcoreguidelines-pro-type-cstyle-cast}:
+No se podrá utilizar ningún \emph{cast} de tipo C.
+
 \item \cppid{cppcoreguidelines-pro-type-member-init}:
+Un constructor deberá dar valor inicial a todos los miembros que podrían
+quedar en un estado indefinido.
 Se utilizará iniciación de literales (\cppkey{int} \cppid{i = 0})
 en vez de iniciación con llaves (\cppkey{int i\{\}}).
+
+\item \cppid{cppcoreguidelines-pro-type-reinterpret-cast}:
+No se podrá utiliza \cppkey{reinterpret\_cast<>}.
+
+\item \cppid{cppcoreguidelines-pro-type-static-cast-downcast}:
+No se podrá utilizar \cppkey{static\_cast<>} en los lugares
+donde un \cppkey{dynamic\_cast} sea más apropiado.
+
+\item \cppid{cppcoreguidelines-pro-type-union-access}:
+No se realizarán accesos a uniones.
+
+\item \cppid{cppcoreguidelines-pro-type-vararg}:
+No se utilizarán funciones con número variable de argumentos mediante
+\cppid{va\_arg}.
 
 \end{itemize}
