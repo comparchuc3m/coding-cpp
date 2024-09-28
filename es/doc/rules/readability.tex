@@ -6,6 +6,8 @@ Todas estas reglas se encuentran bajo la categoría \cppid{readability}.
 \begin{itemize}
 
 \item \cppid{readability-redundant-access-specifiers}.
+-readability-identifier-length,
+-readability-redundant-access-specifiers'
 
 \end{itemize}
 
@@ -13,6 +15,20 @@ Para las reglas de esta categoría, se tendrán en cuenta las siguientes
 opciones:
 
 \begin{itemize}
+
+\item \cppid{readability-avoid-const-params-in-decls}:
+No se permitirán parámetros de tipo \cppkey{const}.
+Si se permitirán parámetros de tipo referencia constante.
+
+\item \cppid{readability-avoid-nested-conditional-operator}:
+No se permitirá el uso anidado del operador condicional (\cppkey{?:}).
+
+\item \cppid{readability-braces-around-statements}:
+El cuerpo de sentencias \cppkey{if}, \cppkey{while} y \cppkey{for}
+siempre estará entre llaves incluso aunque sea una única sentencia.
+
+\item \cppid{readability-const-return-type}:
+El tipo de retorno de una función no incluirá el calificador \cppkey{const}.
 
 \item \cppid{readability-function-cognitive-complexity}:
 La complejidad cognitiva máxima será de \cppid{50}.
@@ -25,5 +41,14 @@ El número máximo de parámetros por función será de \cppid{4}.
 
 \item \cppid{readability-identifier-length}:
 La longitud mínima de los identificadores para parámetros de función será \cppid{1}.
+
+\item \cppid{readability-magic-numbers}:
+No se utilizarán \emph{números mágicos} en el código.
+En vez de esto se definirán constantes apropiadamente.
+
+\item \cppid{readability-make-member-function-const}:
+Si una función miembro no modifica el estado del objeto, se marcará como \cppkey{const}.
+
+
 
 \end{itemize}
