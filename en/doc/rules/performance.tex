@@ -2,3 +2,25 @@
 
 All these rules are under category
 \cppid{performance}.
+
+Below, main applicable rules are described.
+
+\begin{itemize}
+
+\item \cppid{performance-avoid-endl}:
+Use of \cppid{std::endl} shall be avoided.
+Instead, character \cppstr{'\textbackslash{}n'} shall be used.
+
+\item \cppid{performance-enum-size}:
+Size for enumerated types shall always be specified.
+
+\item \cppid{performance-no-int-to-ptr}:
+Conversions from integral types to pointer types shall be used.
+
+\item \cppid{performance-type-promotion-in-math-fn}:
+Implicit promotion from \cppkey{float} to \cppkey{double} shall be avoided
+in invocations to the C mathematical library (e.g. \cppid{sin()}).
+Instead, the corresponding function from the C++ mathematical library
+shall be invoked (e.g. \cppid{std::sin()}).
+
+\end{itemize}

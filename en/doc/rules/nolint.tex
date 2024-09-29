@@ -1,0 +1,71 @@
+\subsection{Rules disabling}
+
+In general, it is not allowed to disable a rule in the project development. 
+
+However, the following exceptions are allowed:
+
+\begin{itemize}
+
+\item The rule about using \cppkey{reinterpret\_cast<>} can be locally bypassed
+      when defining functions for binary input/output.
+
+\item Rules about magic numbers can be disables when defining tests.
+
+\end{itemize}
+
+\subsubsection{Binary input/output functions}
+
+When defining a binary input/output function it is necessary to bypass the rule
+that forbids the use of \cppkey{reinterpret\_cast<>}.
+
+\begin{lstlisting}
+std::int8_t read_binary(std::istream & input) {
+  int8_t value;
+  input.read(reinterpret_cast<char*>(&value), sizeof(value)); // !!!
+  return value;
+}
+
+void write_binary(std::ostream & output, std::int16_t const & value) {
+  output.write(reinterpret_cast<char const*>(&value), sizeof(value)); // !!!
+}
+\end{lstlisting} 
+
+To bypass a rule for a line of code, software developers can write a comment in
+the preceding line of code with text \cppid{NOLINTNEXTLINE} followed by the 
+parenthesized rule id that they want to bypass
+
+\begin{lstlisting}
+std::int8_t read_binary(std::istream & input) {
+  int8_t value;
+  // NOLINTNEXTLINE(cppcoreguidelines-pro-type-reinterpret-cast)
+  input.read(reinterpret_cast<char*>(&value), sizeof(value));
+  return value;
+}
+
+void write_binary(std::ostream & output, std::int16_t const & value) {
+  // NOLINTNEXTLINE(cppcoreguidelines-pro-type-reinterpret-cast)
+  output.write(reinterpret_cast<char const*>(&value), sizeof(value));
+}
+\end{lstlisting} 
+
+\subsubsection{Código fuente de pruebas}
+
+In testing code, it is quite usual to use arbitrary values. In those cases, it
+is completely justified to disable rules that forbid the use of magic number for
+a whole section of code.
+
+Consequently, software developers may use in comments identifiers
+\cppid{NOLINTBEGIN} and \cppid{NOLINTEND} 
+followed by the rules they want to disable.
+
+\begin{lstlisting}
+#include ...
+
+// NOLINTBEGIN(cppcoreguidelines-avoid-magic-numbers)
+// NOLINTBEGIN(readability-magic-numbers)
+
+...
+
+// NOLINTEND(readability-magic-numbers)
+// NOLINTEND(cppcoreguidelines-avoid-magic-numbers)
+\end{lstlisting}

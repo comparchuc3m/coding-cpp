@@ -9,14 +9,14 @@ In general, the following principles must be considered:
 \item No primitive array (C-type array) shall be passed to 
 a function as a pointer parameter.
 
-\item No function or member function shall have more than 4 parameters.
+\item No function or member function shall have more than \cppid{4} parameters.
 
-\item No function shall have more than 25 lines when properly formatted.
+\item No function shall have more than \cppid{40} lines when properly formatted.
 
 \item All parameters shall be passed to functions by value, by reference
 or by const reference.
 
-\item Functions \cppid{malloc()} or \cppid{free} shall not be explicitly invoked.
+\item Functions \cppid{malloc()} or \cppid{free()} shall not be explicitly invoked.
 
 \item Operators \cppkey{new} or \cppkey{delete} shall not be explicitly invoked.
 
@@ -26,6 +26,6 @@ or by const reference.
 \cppkey{static\_cast}, \cppkey{dynamic\_cast} or \cppkey{const\_cast}.
 
 \item \cppkey{reinterpret\_cast} shall be used only when passing parameters
-to functions form the standard library (e.g. \cppid{read()} or \cppid{write()}.
+to functions from the standard library (e.g. \cppid{read()} or \cppid{write()}.
 
 \end{itemize}

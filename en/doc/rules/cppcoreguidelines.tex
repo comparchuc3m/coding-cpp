@@ -3,12 +3,92 @@
 All these rules are under category
 \cppid{cppcoreguidelines}.
 
-For the rules in this category, the following options shall be considered:
+Below, main applicable rules are described.
 
 \begin{itemize}
 
+\item \cppid{cppcoreguidelines-avoid-const-or-ref-data-members}:
+No data member shall be \cppkey{const} or reference type.
+
+\item \cppid{cppcoreguidelines-avoid-do-while}:
+No \cppkey{do-while} loop shall be used.
+
+\item \cppid{cppcoreguidelines-avoid-goto}:
+No \cppkey{goto} statement shall be used,
+except to escape nested loops to a later statement.
+
+\item \cppid{cppcoreguidelines-avoid-non-const-global-variables}:
+No global variable shall be defined unless it is a constant.
+
+\item \cppid{cppcoreguidelines-init-variables}:
+No local variable shall be defined without initializing it.
+
+\item \cppid{cppcoreguidelines-interfaces-global-init}:
+No global initialization shall be performed when they require access to
+an external object.
+
+\item \cppid{cppcoreguidelines-macro-usage}:
+No macro shall be used.
+
+\item \cppid{cppcoreguidelines-narrowing-conversions}:
+No \emph{narrowing conversion} shall be performed 
+as they might potentially cause loss of information.
+
+\item \cppid{cppcoreguidelines-no-malloc}:
+No invocation shall be performed to
+\cppid{malloc()}, \cppid{realloc()}, \cppid{calloc()} or \cppid{free()}.
+
+\item \cppid{cppcoreguidelines-prefer-member-initializer}:
+In constructors, initialization sequence shall be preferred
+instead of initialization in constructor body.
+
+\end{itemize}
+
+\subsubsection{Specific rules on bounds checking}
+
+\begin{itemize}
+
+\item \cppid{cppcoreguidelines-pro-bounds-array-to-pointer-decay}:
+Implicit conversion from arrays to pointers shall be avoided.
+As an alternative, you may use
+\cppid{std:span<T>} or \cppid{gsl::span<T>}.
+
+\item \cppid{cppcoreguidelines-pro-bounds-constant-array-index}:
+No access shall be performed to a primitive array or a \cppid{std::array}
+with an expression whose value is unknown at compile time.
+As an alternative, you may use 
+\cppid{gsl::at()}.
+
+\item \cppid{cppcoreguidelines-pro-bounds-pointer-arithmetic}:
+No pointer arithmetic shall be used.
+
+\end{itemize}
+
+\subsubsection{Specific rules on type safety}
+
+\begin{itemize}
+
+\item \cppid{cppcoreguidelines-pro-type-const-cast}:
+No \cppkey{const\_cast<>} shall be used.
+
+\item \cppid{cppcoreguidelines-pro-type-cstyle-cast}:
+No C-type \emph{cast} shall be used.
+
 \item \cppid{cppcoreguidelines-pro-type-member-init}:
-Literal initializer shall be used (\cppkey{int} \cppid{i = 0})
-instead of brace initializers (\cppkey{int i\{\}}).
+A constructor shall initialize any member that might otherwise be in an undefined state.
+
+\item \cppid{cppcoreguidelines-pro-type-reinterpret-cast}:
+No \cppkey{reinterpret\_cast<>} shall be used.
+
+\item \cppid{cppcoreguidelines-pro-type-static-cast-downcast}:
+No \cppkey{static\_cast<>} shall be used where
+a \cppkey{dynamic\_cast} is considered more appropriate.
+
+\item \cppid{cppcoreguidelines-pro-type-union-access}:
+No access to unions shall be performed.
+
+\item \cppid{cppcoreguidelines-pro-type-vararg}:
+No function with variable number of arguments via
+\cppid{va\_arg} shall be used.
 
 \end{itemize}

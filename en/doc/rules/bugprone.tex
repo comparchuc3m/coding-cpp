@@ -3,18 +3,35 @@
 All these rules are under category
 \cppid{cppcoreguidelines}.
 
-For the rules in this category, the following options shall be considered:
+Below, main applicable rules are described.
 
 \begin{itemize}
 
+\item \cppid{bugprone-assert-side-effect}:
+Side effects in assertion evaluation (with \cppid{assert()}) shall be avoided.
+This rule also applies to side effects with assertions from \textmark{GSL}:
+\cppid{Expects} y \cppid{Ensures}.
+
+\item \cppid{bugprone-assignment-in-if-condition}:
+No assignment shall be performed inside the condition of an \cppkey{if} statement.
+
+\item \cppid{bugprone-bool-pointer-implicit-conversion}:
+No implicit conversion from \cppkey{bool*} to \cppkey{bool} shall be performed.
+
+\item \cppid{bugprone-casting-through-void}:
+No conversion involving \cppkey{void*} shall be performed.
+
 \item \cppid{bugprone-easily-swappable-parameters}: 
-Functions taking 4 or more parameters from the same type shall be defined.
+No function shall have consecutive parameters from the same type that can be confused.
 
 \item \cppid{bugprone-implicit-widening-of-multiplication-result}: 
-A \cppkey{static\_cast<>} shall be used to convert to a wider type.
-If needed file \cppid{<cstddef>} shall be included.
+A \cppkey{static\_cast<>} shall be used to convert to an integral wider type.
+If needed header \cppid{<cstddef>} shall be included.
 
-\item \cppid{bugprone-misplaced-widening-cast}: 
-When widening implicit conversions shall be considered.
+\item \cppid{bugprone-misplaced-widening-cast}:
+Implicit conversions to wider types in calculations shall be avoided.
+
+\item \cppid{bugprone-switch-missing-default-case}:
+A \cppkey{switch} statement shall always include a \cppkey{default} alternative.
 
 \end{itemize}

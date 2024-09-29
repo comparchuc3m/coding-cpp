@@ -3,27 +3,42 @@
 All these rules are under category
 \cppid{readability}.
 
-\textbad{EXCEPTION}: The following rule shall not enabled:
-\begin{itemize}
-
-\item \cppid{readability-redundant-access-specifiers}.
-
-\end{itemize}
-
-For the rules in this category, the following options shall be considered:
+Below, main applicable rules are described.
 
 \begin{itemize}
+
+\item \cppid{readability-avoid-const-params-in-decls}:
+No parameter shall be of a \cppkey{const} type.
+However, const reference parameters are allowed.
+
+\item \cppid{readability-avoid-nested-conditional-operator}:
+No nested use of conditional operator (\cppkey{?:}) shall be allowed.
+
+\item \cppid{readability-braces-around-statements}:
+Body of\cppkey{if}, \cppkey{while} and \cppkey{for} statements
+shall be always enclosed in braces, even if it consists of a single statement.
+
+\item \cppid{readability-const-return-type}:
+A function return type shall not include the \cppkey{const} qualifier.
 
 \item \cppid{readability-function-cognitive-complexity}:
-Maximum cognitive complexity will be \cppid{50}.
+Maximum cognitive complexity shall be \cppid{50}.
 
 \item \cppid{readability-function-size}:
-Maximum number of lines per function will be \cppid{25}.
+Maximum number of lines per function shall be \cppid{40}.
 
 \item \cppid{readability-function-size}:
-Maximum number of parameters per function will be \cppid{4}.
+Maximum number of parameters per function shall be \cppid{4}.
 
 \item \cppid{readability-identifier-length}:
-Minimum identifier length for function parameters will be \cppid{1}.
+Minimum length for identifier names shall be 3 characters.
+An exception is loop counters with names \cppid{i}, \cppid{j} or \cppid{k}.
+
+\item \cppid{readability-magic-numbers}:
+No \emph{magic numbers} shall be used in code.
+Instead, they will be defined as constants.
+
+\item \cppid{readability-make-member-function-const}:
+When a member function does not modify the object state, it shall be marked as \cppkey{const}.
 
 \end{itemize}

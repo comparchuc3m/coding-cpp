@@ -2,3 +2,18 @@
 
 All these rules are under category
 \cppid{cert}.
+
+Below, main applicable rules are described.
+
+\begin{itemize}
+
+\item \cppid{cert-err34-c}:
+No string to number conversion function shall be used if
+it does not verify conversion validity (e.g.  \cppid{atoi()} o \cppid{sscanf()}).
+
+\item \cppid{cert-oop57-cpp}:
+Standard C library functions such as
+\cppid{memset()}, \cppid{memcpy()}, \cppid{memcmp()} 
+shall not be used on non-trivial types.
+
+\end{itemize}

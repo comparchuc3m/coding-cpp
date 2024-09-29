@@ -3,19 +3,37 @@
 All these rules are under category
 \cppid{misc}.
 
-\textbad{EXCEPTION}: The following rule shall not enabled:
-\begin{itemize}
-
-\item \cppid{misc-include-cleaner}.
-
-\end{itemize}
-
-For the rules in this category, the following options shall be considered:
+Below, main applicable rules are described.
 
 \begin{itemize}
+
+\item \cppid{misc-confusable-identifiers}:
+Identifiers that are very similar and could cause confusion shall be avoided.
+
+\item \cppid{misc-const-correctness}:
+All variables that are initialized and not modified shall be defined as
+\cppkey{const}.
+
+\item \cppid{misc-definitions-in-headers}:
+No variable shall be defined in a header file.
+
+\item \cppid{misc-header-include-cycle}:
+Cyclic dependencies among header files shall be avoided.
+
+\item \cppid{misc-include-cleaner}:
+Inclusion of not needed header files shall be avoided.
 
 \item \cppid{misc-non-private-member-variables-in-classes}:
 Data members shall be private unless the type is a structure with
 all data members being public.
+
+\item \cppid{misc-redundant-expression}:
+Redundant expressions shall be avoided.
+
+\item \cppid{misc-static-assert}:
+When possible, \cppkey{static\_assert} shall be preferred over \cppid{assert}.
+
+\item \cppid{misc-throw-by-value-catch-by-reference}:
+Exceptions shall be thrown by value and caught by reference.
 
 \end{itemize}

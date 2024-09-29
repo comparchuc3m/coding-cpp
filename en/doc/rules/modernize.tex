@@ -10,11 +10,23 @@ All these rules are under category
 
 \end{itemize}
 
-For the rules in this category, the following options shall be considered:
+Below, main applicable rules are described.
 
 \begin{itemize}
 
 \item \cppid{modernize-deprecated-headers}:
 Only C++ header files shall be used.
+
+\item \cppid{modernize-make-shared}:
+No \cppid{shared\_ptr} shall be initialized from \cppkey{new}.
+As an alternative, use \cppid{make\_shared}.
+
+\item \cppid{modernize-make-unique}:
+No \cppid{unique\_ptr} shall be initialized from \cppkey{new}.
+As an alternative, use \cppid{make\_unique}.
+
+\item \cppid{modernize-use-nullptr}:
+Macro \cppid{NULL} shall not be used.
+As an alternative, use \cppkey{nullptr}.
 
 \end{itemize}
