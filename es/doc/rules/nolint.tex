@@ -1,0 +1,72 @@
+\subsection{Anulación de reglas}
+
+En general, no está permitido la anulación de reglas en el desarrollo
+del proyecto.
+
+No obstante, se establecen las siguientes excepciones:
+\begin{itemize}
+
+\item Se podrá anular la regla sobre el uso de \cppkey{reinterpret\_cast<>}
+      en la definición de funciones de entrada salida binaria.
+
+\item Se podrán anular las reglas sobre números mágicos 
+      en la definición de tests.
+
+\end{itemize}
+
+\subsubsection{Funciones de entrada salida binaria}
+
+A la hora de definir una función de entrada/salida binaria se hace necesario
+anular la regla que prohibe el uso de \cppkey{reinterpret\_cast<>}.
+
+\begin{lstlisting}
+std::int8_t read_binary(std::istream & input) {
+  int8_t value;
+  input.read(reinterpret_cast<char*>(&value), sizeof(value)); // !!!
+  return value;
+}
+
+void write_binary(std::ostream & output, std::int16_t const & value) {
+  output.write(reinterpret_cast<char const*>(&value), sizeof(value)); // !!!
+}
+\end{lstlisting} 
+
+Para anular una regla en una línea de código se puede escribir un comentario en
+la línea de código anterior con el text \cppid{NOLINTNEXTLINE} seguido de la
+regla que se desea anular entre paréntesis.
+
+\begin{lstlisting}
+std::int8_t read_binary(std::istream & input) {
+  int8_t value;
+  // NOLINTNEXTLINE(cppcoreguidelines-pro-type-reinterpret-cast)
+  input.read(reinterpret_cast<char*>(&value), sizeof(value));
+  return value;
+}
+
+void write_binary(std::ostream & output, std::int16_t const & value) {
+  // NOLINTNEXTLINE(cppcoreguidelines-pro-type-reinterpret-cast)
+  output.write(reinterpret_cast<char const*>(&value), sizeof(value));
+}
+\end{lstlisting} 
+
+\subsubsection{Código fuente de pruebas}
+
+En el código de pruebas es muy habitual que sea necesario utilizar valores
+arbitrarios. En estos casos está justificado anular las reglas que prohíben el
+uso de número mágicos en toda la sección de código.
+
+Para ello se pueden usar entre comentarios los identificadores
+\cppid{NOLINTBEGIN} y \cppid{NOLINTEND} 
+seguidos de las reglas que se desea anular.
+
+\begin{lstlisting}
+#include ...
+
+// NOLINTBEGIN(cppcoreguidelines-avoid-magic-numbers)
+// NOLINTBEGIN(readability-magic-numbers)
+
+...
+
+// NOLINTEND(readability-magic-numbers)
+// NOLINTEND(cppcoreguidelines-avoid-magic-numbers)
+\end{lstlisting}
