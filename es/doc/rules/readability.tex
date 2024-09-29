@@ -2,15 +2,6 @@
 
 Todas estas reglas se encuentran bajo la categoría \cppid{readability}.
 
-\textbad{EXCEPCIÓN}: No se activará la siguiente regla:
-\begin{itemize}
-
-\item \cppid{readability-redundant-access-specifiers}.
--readability-identifier-length,
--readability-redundant-access-specifiers'
-
-\end{itemize}
-
 Para las reglas de esta categoría, se tendrán en cuenta las siguientes
 opciones:
 
@@ -34,13 +25,13 @@ El tipo de retorno de una función no incluirá el calificador \cppkey{const}.
 La complejidad cognitiva máxima será de \cppid{50}.
 
 \item \cppid{readability-function-size}:
-El número máximo de líneas por función será de \cppid{25}.
+El número máximo de líneas por función será de \cppid{40}.
 
 \item \cppid{readability-function-size}:
 El número máximo de parámetros por función será de \cppid{4}.
 
 \item \cppid{readability-identifier-length}:
-La longitud mínima de los identificadores para parámetros de función será \cppid{1}.
+La longitud mínima de los identificadores será de 3 caracteres.
 
 \item \cppid{readability-magic-numbers}:
 No se utilizarán \emph{números mágicos} en el código.
@@ -48,7 +39,5 @@ En vez de esto se definirán constantes apropiadamente.
 
 \item \cppid{readability-make-member-function-const}:
 Si una función miembro no modifica el estado del objeto, se marcará como \cppkey{const}.
-
-
 
 \end{itemize}

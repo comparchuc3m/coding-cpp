@@ -1,3 +1,23 @@
 \subsection{Reglas orientadas al rendimiento}
 
 Todas estas reglas se encuentran bajo la categoría \cppid{performance}.
+
+\begin{itemize}
+
+\item \cppid{performance-avoid-endl}:
+Se evitará el uso de \cppid{std::endl}. 
+En su lugar se usará el carácter \cppstr{'\textbackslash{}n'}
+
+\item \cppid{performance-enum-size}:
+Siempre se especificará el tamaño de los tipos enumerados.
+
+\item \cppid{performance-no-int-to-ptr}:
+Se evitarán las conversiones de tipos integrales a puntero.
+
+\item \cppid{performance-type-promotion-in-math-fn}:
+Se evitará la promoción implícita de \cppkey{float} a \cppkey{double} en 
+invocaciones a la biblioteca matemática de C (p. ej. \cppid{sin()}).
+En su lugar se invocará a la correspondiente función de la biblioteca
+matemática de C++ (p. ej. \cppid{std::sin()}.
+
+\end{itemize}
