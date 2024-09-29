@@ -7,17 +7,17 @@ No obstante, se establecen las siguientes excepciones:
 \begin{itemize}
 
 \item Se podrá anular la regla sobre el uso de \cppkey{reinterpret\_cast<>}
-      en la definición de funciones de entrada salida binaria.
+      en la definición de funciones de entrada/salida binaria.
 
 \item Se podrán anular las reglas sobre números mágicos 
       en la definición de tests.
 
 \end{itemize}
 
-\subsubsection{Funciones de entrada salida binaria}
+\subsubsection{Funciones de entrada/salida binaria}
 
 A la hora de definir una función de entrada/salida binaria se hace necesario
-anular la regla que prohibe el uso de \cppkey{reinterpret\_cast<>}.
+anular la regla que prohíbe el uso de \cppkey{reinterpret\_cast<>}.
 
 \begin{lstlisting}
 std::int8_t read_binary(std::istream & input) {
@@ -32,7 +32,7 @@ void write_binary(std::ostream & output, std::int16_t const & value) {
 \end{lstlisting} 
 
 Para anular una regla en una línea de código se puede escribir un comentario en
-la línea de código anterior con el text \cppid{NOLINTNEXTLINE} seguido de la
+la línea de código anterior con el texto \cppid{NOLINTNEXTLINE} seguido de la
 regla que se desea anular entre paréntesis.
 
 \begin{lstlisting}

@@ -2,8 +2,7 @@
 
 Todas estas reglas se encuentran bajo la categoría \cppid{cppcoreguidelines}.
 
-Para las reglas de esta categoría, se tendrán en cuenta las siguientes
-opciones:
+A continuación se resumen las principales reglas aplicables.
 
 \begin{itemize}
 
@@ -30,11 +29,11 @@ No se realizarán iniciaciones globales que requieran acceso a objetos externos.
 No se utilizarán macros.
 
 \item \cppid{cppcoreguidelines-narrowing-conversions}:
-No se permitiran conversines estrechadores (\emph{narrowing}) que 
+No se permitirán conversiones estrechadoras (\emph{narrowing}) que 
 potencialmente puedan causar pérdida de información.
 
 \item \cppid{cppcoreguidelines-no-malloc}:
-No se realizarán invocaciónes a
+No se realizarán invocaciones a
 \cppid{malloc()}, \cppid{realloc()}, \cppid{calloc()} o \cppid{free()}.
 
 \item \cppid{cppcoreguidelines-prefer-member-initializer}:
@@ -50,7 +49,7 @@ antes que la iniciación en el cuerpo del constructor.
 \item \cppid{cppcoreguidelines-pro-bounds-array-to-pointer-decay}:
 Se evitará la conversión implícita de un array en un puntero.
 Se puede utilizar \cppid{std:span<T>} o \cppid{gsl::span<T>}
-como alterantiva.
+como alternativa.
 
 \item \cppid{cppcoreguidelines-pro-bounds-constant-array-index}:
 No se realizará un acceso a una posición de un array primitivo
@@ -76,8 +75,6 @@ No se podrá utilizar ningún \emph{cast} de tipo C.
 \item \cppid{cppcoreguidelines-pro-type-member-init}:
 Un constructor deberá dar valor inicial a todos los miembros que podrían
 quedar en un estado indefinido.
-Se utilizará iniciación de literales (\cppkey{int} \cppid{i = 0})
-en vez de iniciación con llaves (\cppkey{int i\{\}}).
 
 \item \cppid{cppcoreguidelines-pro-type-reinterpret-cast}:
 No se podrá utiliza \cppkey{reinterpret\_cast<>}.
