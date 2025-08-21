@@ -11,6 +11,7 @@ readability-*,
 
 CheckOptions:
   bugprone-assert-side-effect.AssertMacros: 'assert,Expects,Ensures'
+  bugprone-implicit-widening-of-multiplication-result.IgnoreConstantIntExpr: false
   bugprone-misplaced-widening-cast.CheckImplicitCasts: true
   cppcoreguidelines-pro-type-const-cast.StrictMode: true
   misc-non-private-member-variables-in-classes.IgnoreClassesWithAllMemberVariablesBeingPublic: true
