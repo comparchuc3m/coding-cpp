@@ -3,7 +3,11 @@
 All these rules are under category
 \cppid{cert}.
 
+\subsubsection{Applicable rules}
+
 Below, main applicable rules are described.
+Please, note that there are many more rules from this category that are enabled.
+If you need a detailed explanation, you can consult the \cppkey{clang-tidy} manual. 
 
 \begin{itemize}
 
@@ -17,3 +21,15 @@ Standard C library functions such as
 shall not be used on non-trivial types.
 
 \end{itemize}
+
+\subsubsection{Excluded rules}
+
+The following rules shall not be applied:
+
+\begin{itemize}
+
+\item \cppid{cert-err58-cpp}
+\item \cppid{cert-msc51-cpp}
+
+\end{itemize}
+

@@ -2,17 +2,35 @@
 
 Todas estas reglas se encuentran bajo la categoría \cppid{cert}.
 
+\subsubsection{Reglas aplicables}
+
 A continuación se resumen las principales reglas aplicables.
+Por favor, ten en cuenta que hay muchas más reglas de esta categoría que están 
+activadas. Si necesitas una explicación detallada sobre alguna de ellas,
+puedes consultar el manual de \cppkey{clang-tidy}.
 
 \begin{itemize}
 
 \item \cppid{cert-err34-c}:
 No se utilizarán funciones de conversión de cadena a número que no
 verifiquen la validez de la conversión como \cppid{atoi()} o \cppid{sscanf()}.
+En su lugar, se pueden utilizar funciones como \cppid{std::stoi()},
+\cppid{std::stod()}, \ldots
 
 \item \cppid{cert-oop57-cpp}:
 No se utilizarán las funciones de la biblioteca estándar de C
 \cppid{memset()}, \cppid{memcpy()}, \cppid{memcmp()} y similares
 sobre tipos no triviales.
+
+\end{itemize}
+
+\subsubsection{Reglas excluidas}
+
+No son de aplicación las siguientes reglas:
+
+\begin{itemize}
+
+\item \cppid{cert-err58-cpp}
+\item \cppid{cert-msc51-cpp}
 
 \end{itemize}
