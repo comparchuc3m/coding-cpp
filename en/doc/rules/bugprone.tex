@@ -1,9 +1,13 @@
 \subsection{Rules to avoid common mistakes}
 
 All these rules are under category
-\cppid{cppcoreguidelines}.
+\cppid{bugprone}.
+
+\subsubsection{Applicable rules}
 
 Below, main applicable rules are described.
+Please, note that there are many more rules from this category that are enabled.
+If you need a detailed explanation, you can consult the \cppkey{clang-tidy} manual. 
 
 \begin{itemize}
 
@@ -12,26 +16,50 @@ Side effects in assertion evaluation (with \cppid{assert()}) shall be avoided.
 This rule also applies to side effects with assertions from \textmark{GSL}:
 \cppid{Expects} y \cppid{Ensures}.
 
+The following option shall be used:
+\begin{lstlisting}
+bugprone-assert-side-effect.AssertMacros: 'assert,Expects,Ensures'
+\end{lstlisting}
+
 \item \cppid{bugprone-assignment-in-if-condition}:
 No assignment shall be performed inside the condition of an \cppkey{if} statement.
-
-\item \cppid{bugprone-bool-pointer-implicit-conversion}:
-No implicit conversion from \cppkey{bool*} to \cppkey{bool} shall be performed.
 
 \item \cppid{bugprone-casting-through-void}:
 No conversion involving \cppkey{void*} shall be performed.
 
+\item \cppid{bugprone-chained-comparison}:
+No chained comparison that might be confusing shall be used.
+
 \item \cppid{bugprone-easily-swappable-parameters}: 
-No function shall have consecutive parameters from the same type that can be confused.
+No function shall have consecutive parameters from the same type that 
+might lead to confusion.
 
 \item \cppid{bugprone-implicit-widening-of-multiplication-result}: 
 A \cppkey{static\_cast<>} shall be used to convert to an integral wider type.
 If needed header \cppid{<cstddef>} shall be included.
 
+The following option shall be used:
+\begin{lstlisting}
+bugprone-implicit-widening-of-multiplication-result.IgnoreConstantIntExpr: false
+\end{lstlisting}
+
 \item \cppid{bugprone-misplaced-widening-cast}:
 Implicit conversions to wider types in calculations shall be avoided.
 
+\item \cppid{bugprone-narrowing-conversions}:
+Narrowing conversions leading to loss of informations shall be avoided.
+
 \item \cppid{bugprone-switch-missing-default-case}:
 A \cppkey{switch} statement shall always include a \cppkey{default} alternative.
+
+\end{itemize}
+
+\subsubsection{Excluded rules}
+
+The following rules shall not be applied:
+
+\begin{itemize}
+
+\item \cppid{bugprone-argument-comment}.
 
 \end{itemize}
