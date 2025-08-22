@@ -3,7 +3,11 @@
 All these rules are under category
 \cppid{performance}.
 
-Below, main applicable rules are described.
+\subsubsection{Applicable Rules}
+
+The main applicable rules are summarized below. Please note that there are many more
+rules in this category that are enabled. If you need a detailed explanation of any of them,
+you can consult the \textemph{clang-tidy} manual.
 
 \begin{itemize}
 
@@ -11,8 +15,10 @@ Below, main applicable rules are described.
 Use of \cppid{std::endl} shall be avoided.
 Instead, character \cppstr{'\textbackslash{}n'} shall be used.
 
-\item \cppid{performance-enum-size}:
-Size for enumerated types shall always be specified.
+\item \cppid{performance-for-range-copy}:
+In \textmark{range-based for loops}, copying the loop variable on each iteration
+shall be avoided if it has an expensive copy operation. In that case, take the
+variable by const reference.
 
 \item \cppid{performance-no-int-to-ptr}:
 Conversions from integral types to pointer types shall be used.
@@ -24,3 +30,14 @@ Instead, the corresponding function from the C++ mathematical library
 shall be invoked (e.g. \cppid{std::sin()}).
 
 \end{itemize}
+
+\subsubsection{Excluded Rules}
+
+The following rules shall not be applied:
+
+\begin{itemize}
+
+\item \cppid{performance-enum-size}.
+
+\end{itemize}
+
