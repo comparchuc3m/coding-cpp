@@ -3,7 +3,10 @@
 All these rules are under category
 \cppid{cppcoreguidelines}.
 
-Below, main applicable rules are described.
+\subsubsection{Applicable rules}
+Below, main applicable rules are described. Please, note that there are many
+more rules from this category that are enabled. If you need a detailed
+explanation, you can consult the clang-tidy manual.
 
 \begin{itemize}
 
@@ -17,8 +20,28 @@ No \cppkey{do-while} loop shall be used.
 No \cppkey{goto} statement shall be used,
 except to escape nested loops to a later statement.
 
+\item \cppid{cppcoreguidelines-avoid-magic-numbers}:
+No \emph{magic numbers} (numeric literals directly used in code)
+shall be used. Instead, the corresponding constants will be defined
+using \cppkey{constexpr}.
+
 \item \cppid{cppcoreguidelines-avoid-non-const-global-variables}:
 No global variable shall be defined unless it is a constant.
+
+\textbad{Note}: The \emph{Singleton} design pattern shall not be used
+to simulate a global variable.
+
+\item \cppid{cppcoreguidelines-c-copy-assignment-signature}:
+If the copy assignment operator is defined for a class, the following
+rules shall be observed (for a class \cppid{X}):
+  \begin{itemize}
+    \item The return type shall be \cppid{X\&}.
+    \item The \cppkey{return} statement shall always return \cppkey{*this}.
+  \end{itemize}
+
+\item \cppid{cppcoreguidelines-explicit-virtual-functions}:
+When a \textmark{virtual function} is overriden qualifiers \cppkey{override}
+and/or \cppkey{final} shall be used.
 
 \item \cppid{cppcoreguidelines-init-variables}:
 No local variable shall be defined without initializing it.
@@ -27,20 +50,65 @@ No local variable shall be defined without initializing it.
 No global initialization shall be performed when they require access to
 an external object.
 
+\item \cppid{cppcoreguidelines-macro-to-enum}:
+Instead of using macros to define a set of related constants,
+enumerated types shall be used.
+
 \item \cppid{cppcoreguidelines-macro-usage}:
 No macro shall be used.
 
 \item \cppid{cppcoreguidelines-narrowing-conversions}:
 No \emph{narrowing conversion} shall be performed 
 as they might potentially cause loss of information.
+If needed, the library function \cppid{gsl::narrow<tipo>(valor)} from the 
+\textemph{GSL} library shall be used for narrowing conversions.
 
 \item \cppid{cppcoreguidelines-no-malloc}:
 No invocation shall be performed to
 \cppid{malloc()}, \cppid{realloc()}, \cppid{calloc()} or \cppid{free()}.
 
+\item \cppid{cppcoreguidelines-noexcept-destructor}:
+If a destructor is defined for a class, 
+it will not be qualified as \cppkey{noexcept} 
+or it will be qualified as unconditionally \cppkey{noexcept}.
+
+\item \cppid{cppcoreguidelines-noexcept-move-operations}:
+If move operations are defined, they will be qualified as 
+\cppkey{noexcept}.
+
+\item \cppid{cppcoreguidelines-noexcept-swap}:
+If the \cppid{swap()} function is overloaded,
+it will be uncondtionally qualified as \cppkey{noexcept}.
+
+\item \cppid{cppcoreguidelines-owning-memory}:
+If a pointer to memory that must be released is used, 
+type \cppid{gsl::owner<T*>} shall be used.
+
+\textbad{Note}: 
+The use of smart pointers (such as \cppid{std::unique\_ptr<T>})
+shall be preferred. Type \cppid{gsl::owner<T*>} shall only be used
+when implementing very low level abstractions.
+
 \item \cppid{cppcoreguidelines-prefer-member-initializer}:
 In constructors, initialization sequence shall be preferred
 instead of initialization in constructor body.
+
+\item \cppid{cppcoreguidelines-slicing}:
+Constructions leading to object slicing shall be avoided.
+This situation happnes when an object of a derived class is copied into an
+object of a base class.
+
+\item \cppid{cppcoreguidelines-special-member-functions}:
+If a copy operation, move operation or destructor is defined or deleted, 
+all the other operations shall be defined or deleted.
+
+\item \cppid{cppcoreguidelines-use-default-member-init}:
+Data member initializers shall be preferred instead of initialization in the 
+constructor, when both options are possible.
+
+\item \cppid{cppcoreguidelines-virtual-class-destructor}:
+A base class with a public destructor shall define it as \cppkey{virtual}.
+If the destructor is protected, it shall be defined as non-\cppkey{virtual}.
 
 \end{itemize}
 
@@ -69,7 +137,8 @@ No pointer arithmetic shall be used.
 \begin{itemize}
 
 \item \cppid{cppcoreguidelines-pro-type-const-cast}:
-No \cppkey{const\_cast<>} shall be used.
+No \cppkey{const\_cast<>} shall be used to remove the \cppkey{const} qualifier
+from an object.
 
 \item \cppid{cppcoreguidelines-pro-type-cstyle-cast}:
 No C-type \emph{cast} shall be used.
@@ -87,8 +156,24 @@ a \cppkey{dynamic\_cast} is considered more appropriate.
 \item \cppid{cppcoreguidelines-pro-type-union-access}:
 No access to unions shall be performed.
 
+\textbad{Note}: 
+In general, type \cppid{std::variant} should be used (insted of unions),
+when variant record is needed.
+
 \item \cppid{cppcoreguidelines-pro-type-vararg}:
 No function with variable number of arguments via
 \cppid{va\_arg} shall be used.
 
 \end{itemize}
+
+\subsubsection{Excluded rules}
+
+The following rules shall not be applied:
+
+
+\begin{itemize}
+
+\item \cppid{cppcoreguidelines-non-private-member-variables-in-classes}
+
+\end{itemize}
+

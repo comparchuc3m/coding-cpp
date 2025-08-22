@@ -2,7 +2,12 @@
 
 Todas estas reglas se encuentran bajo la categoría \cppid{cppcoreguidelines}.
 
+\subsubsection{Reglas aplicables}
+
 A continuación se resumen las principales reglas aplicables.
+Por favor, ten en cuenta que hay muchas más reglas de esta categoría que están
+activadas. Si necesitas una explicación detallada sobre alguna de ellas, puedes
+consultar el manual de \cppkey{clang-tidy}.
 
 \begin{itemize}
 
@@ -16,8 +21,28 @@ No se utilizarán bucles del tipo \cppkey{do-while}.
 No se utilizará \cppkey{goto} excepto para salir de bucles anidados
 a sentencias posteriores.
 
+\item \cppid{cppcoreguidelines-avoid-magic-numbers}:
+Se evitará el uso de \emph{número mágicos} (literales numéricos usados
+directamente en el código). En su lugar se definirán las correspondientes
+constantes usando \cppkey{constexpr}.
+
 \item \cppid{cppcoreguidelines-avoid-non-const-global-variables}:
 No se definirán variables globales a menos que sean constantes.
+
+\textbad{Nota}: No se utilizará el patrón \emph{Singleton} para
+simular una variable global.
+
+\item \cppid{cppcoreguidelines-c-copy-assignment-signature}:
+En caso de definir el operador de asignación de copia de una clase 
+se observarán las siguientes reglas (para una clase \cppid{X}):
+  \begin{itemize}
+    \item El tipo de retorno será \cppid{X\&}.
+    \item La sentencia \cppkey{return} siempre devolverá \cppkey{*this}.
+  \end{itemize}
+
+\item \cppid{cppcoreguidelines-explicit-virtual-functions}:
+Siempre que se redefina una \textmark{función virtual} se utilizará los
+calificadores \cppkey{override} y/o \cppkey{final}.
 
 \item \cppid{cppcoreguidelines-init-variables}:
 No se definirán variables locales sin darles un valor inicial.
@@ -25,24 +50,69 @@ No se definirán variables locales sin darles un valor inicial.
 \item \cppid{cppcoreguidelines-interfaces-global-init}:
 No se realizarán iniciaciones globales que requieran acceso a objetos externos.
 
+\item \cppid{cppcoreguidelines-macro-to-enum}:
+En vez de utilizar macros para definir un conjunto de constantes relacionadas,
+se utilizará un tipo enumerado.
+
 \item \cppid{cppcoreguidelines-macro-usage}:
 No se utilizarán macros.
 
 \item \cppid{cppcoreguidelines-narrowing-conversions}:
-No se permitirán conversiones estrechadoras (\emph{narrowing}) que 
-potencialmente puedan causar pérdida de información.
+Se evitarán la conversiones de estrechamiento que puedan dar lugar a pérdida
+de información. Si es necesario se utilizará la función de la biblioteca
+\textemph{GSL} para conversiones de estrechamiento:
+\cppid{gsl::narrow<tipo>(valor)}.
 
 \item \cppid{cppcoreguidelines-no-malloc}:
 No se realizarán invocaciones a
 \cppid{malloc()}, \cppid{realloc()}, \cppid{calloc()} o \cppid{free()}.
 
+\item \cppid{cppcoreguidelines-noexcept-destructor}:
+En caso de definirse el destructor de una clase,
+éste no se calificará como \cppkey{noexcept} o bien
+se calificará incondicionalmente como \cppkey{noexcept}.
+
+\item \cppid{cppcoreguidelines-noexcept-move-operations}:
+En caso de definirse operaciones de movimiento, éstas se se calificarán como
+\cppkey{noexcept}.
+
+\item \cppid{cppcoreguidelines-noexcept-swap}:
+Si se sobrecarga la función \cppid{swap()},
+ésta se calificará incondicionalmente como \cppkey{noexcept}.
+
+\item \cppid{cppcoreguidelines-owning-memory}:
+En caso de usar un puntero a memoria que deba liberarse, se utilizará
+el tipo \cppid{gsl::owner<T*>}.
+
+\textbad{Nota}: Se debe preferir el uso de punteros elegantes como
+\cppid{std::unique\_ptr<T>}. Solamente se usará \cppid{gsl::owner<T*>} en la
+implementación de abstracciones de muy bajo nivel.
+
 \item \cppid{cppcoreguidelines-prefer-member-initializer}:
 Se preferirá la iniciación en la secuencia de iniciación del constructor
 antes que la iniciación en el cuerpo del constructor.
 
+\item \cppid{cppcoreguidelines-slicing}:
+Se evitarán construcciones que den lugar a recorte (\emph{slicing}) de objetos.
+Esto ocurre cuando se copia un objeto de una clase derivada en un objeto de una
+clase base.
+
+\item \cppid{cppcoreguidelines-special-member-functions}:
+Si se define o elimina una operación de copia, movimiento o destructor, se
+deberán definir o eliminar todas ellas.
+
+\item \cppid{cppcoreguidelines-use-default-member-init}:
+Se preferirá la iniciación de datos miembro en la definición de la clase, antes
+que en los constructores cuando ambas opciones sean posibles.
+
+\item \cppid{cppcoreguidelines-virtual-class-destructor}:
+Las clases base de una jerarquía que tengan un destructor público lo deberán
+definir como una función \cppkey{virtual}. Si el destructor es protegido no
+deberá ser \cppkey{virtual}.
+
 \end{itemize}
 
-\subsubsection{Reglas específicas sobre comprobación de límites}
+\subsubsection{Reglas específicas sobre seguridad de límites}
 
 \begin{itemize}
 
@@ -67,7 +137,8 @@ No se podrá utilizar aritmética de punteros.
 \begin{itemize}
 
 \item \cppid{cppcoreguidelines-pro-type-const-cast}:
-No se podrá utilizar \cppkey{const\_cast<>}.
+No se hará uso del operador \cppkey{const\_cast<>} para eliminar
+el calificador \cppkey{const} de un objeto.
 
 \item \cppid{cppcoreguidelines-pro-type-cstyle-cast}:
 No se podrá utilizar ningún \emph{cast} de tipo C.
@@ -86,8 +157,22 @@ donde un \cppkey{dynamic\_cast} sea más apropiado.
 \item \cppid{cppcoreguidelines-pro-type-union-access}:
 No se realizarán accesos a uniones.
 
+\textbad{Nota}: En general, se debe considerar el uso del tipo
+\cppid{std::variant}, en vez de uniones, para los casos de registros
+con variantes.
+
 \item \cppid{cppcoreguidelines-pro-type-vararg}:
 No se utilizarán funciones con número variable de argumentos mediante
 \cppid{va\_arg}.
+
+\end{itemize}
+
+\subsubsection{Reglas excluidas}
+
+No son de aplicación las siguientes reglas:
+
+\begin{itemize}
+
+\item \cppid{cppcoreguidelines-non-private-member-variables-in-classes}
 
 \end{itemize}

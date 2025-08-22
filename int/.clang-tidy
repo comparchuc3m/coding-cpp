@@ -1,21 +1,20 @@
 Checks: '-*,
-modernize-*,
 bugprone-*,
 cert-*,
 -cert-err58-cpp,
 -cert-msc51-cpp,
 cppcoreguidelines-*,
-misc-*,
+-cppcoreguidelines-non-private-member-variables-in-classes,
 modernize-*,
+-modernize-use-trailing-return-type'
+misc-*,
 performance-*,
 readability-*,
--modernize-use-trailing-return-type'
 
 CheckOptions:
   bugprone-assert-side-effect.AssertMacros: 'assert,Expects,Ensures'
   bugprone-implicit-widening-of-multiplication-result.IgnoreConstantIntExpr: false
   bugprone-misplaced-widening-cast.CheckImplicitCasts: true
-  cppcoreguidelines-pro-type-const-cast.StrictMode: true
   misc-non-private-member-variables-in-classes.IgnoreClassesWithAllMemberVariablesBeingPublic: true
   modernize-deprecated-headers.CheckHeaderFile: true
   readability-function-cognitive-complexity.Threshold: 50
