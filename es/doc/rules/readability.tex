@@ -2,12 +2,17 @@
 
 Todas estas reglas se encuentran bajo la categoría \cppid{readability}.
 
-A continuación se resumen las principales reglas aplicables.
+\subsubsection{Reglas aplicables}
+
+A continuación se resumen las principales reglas aplicables. Por favor, ten en cuenta que hay muchas más
+reglas de esta categoría que están activadas. Si necesitas una explicación detallada sobre alguna de ellas,
+puedes consultar el manual de \textemph{clang-tidy}.
 
 \begin{itemize}
 
 \item \cppid{readability-avoid-const-params-in-decls}:
-No se permitirán parámetros de tipo \cppkey{const}.
+No se permitirán parámetros de tipo \cppkey{const} en la declaración de
+funciones.
 Si se permitirán parámetros de tipo referencia constante.
 
 \item \cppid{readability-avoid-nested-conditional-operator}:
@@ -20,19 +25,38 @@ siempre estará entre llaves incluso aunque sea una única sentencia.
 \item \cppid{readability-const-return-type}:
 El tipo de retorno de una función no incluirá el calificador \cppkey{const}.
 
+\item \cppid{readability-convert-member-functions-to-static}:
+Las funciones miembro que no utilizan ningún miembro no estático se calificarán
+como \cppkey{static}.
+
+\item \cppid{readability-duplicate-include}:
+Se evitará la inclusión duplicada de archivos de cabecera.
+
+\item \cppid{readability-else-after-return}:
+No se utilizarán \cppkey{else} o \cppkey{else if} después de interrupciones del
+flujo de control (\cppkey{return}, \cppkey{break}, \cppkey{continue} o
+\cppkey{throw}).
+
 \item \cppid{readability-function-cognitive-complexity}:
 La complejidad cognitiva máxima será de \cppid{50}.
 
+Se utilizarán las siguientes opciones:
+
+\begin{lstlisting}
+readability-function-cognitive-complexity.Threshold: 50
+readability-function-cognitive-complexity.Threshold.DescribeBasicIncrements: true
+\end{lstlisting}
+
 \item \cppid{readability-function-size}:
 El número máximo de líneas por función será de \cppid{40}.
-
-\item \cppid{readability-function-size}:
 El número máximo de parámetros por función será de \cppid{4}.
 
-\item \cppid{readability-identifier-length}:
-La longitud mínima de los identificadores será de 3 caracteres.
-Se establece una excepción para los contadores de bucle con nombres
-\cppid{i}, \cppid{j} o \cppid{k}.
+Se utilizarán la siguientes opciones:
+
+\begin{lstlisting}
+readability-function-size.LineThreshold: 40
+readability-function-size.ParameterThreshold: 4
+\end{lstlisting}
 
 \item \cppid{readability-magic-numbers}:
 No se utilizarán \emph{números mágicos} en el código.
@@ -41,4 +65,35 @@ En vez de esto se definirán constantes apropiadamente.
 \item \cppid{readability-make-member-function-const}:
 Si una función miembro no modifica el estado del objeto, se marcará como \cppkey{const}.
 
+\item \cppid{readability-operators-representation}:
+Se preferirá el uso de tokens alternativos en los operadores lógicos y de bit:
+\cppkey{and}, \cppkey{and\_eq}, \cppkey{bitand}, \cppkey{bitor}, \cppkey{compl},
+\cppkey{not}, \cppkey{not\_eq}, \cppkey{or}, \cppkey{or\_eq}, \cppkey{xor},
+\cppkey{xor\_eq}.
+
+Se aplicarán las siguientes opciones:
+
+\begin{lstlisting}
+readability-operators-representation.BinaryOperators: 'and;and_eq;bitand;bitor;or;or_eq;xor;xor_eq'
+readability-operators-representation.OverloadedOperators: 'and;and_eq;bitand;bitor;or;or_eq;xor;xor_eq'
+\end{lstlisting}
+
 \end{itemize}
+
+\subsubsection{Reglas excluidas}
+
+No son de aplicación las siguientes reglas.
+
+\begin{itemize}
+
+\item \cppid{readability-enum-initial-value}.
+\item \cppid{readability-identifier-length}.
+\item \cppid{readability-identifier-naming}.
+\item \cppid{readability-isolate-declaration}.
+\item \cppid{readability-math-missing-parentheses}.
+\item \cppid{readability-named-parameter}.
+\item \cppid{readability-redundant-access-specifiers}.
+
+\end{itemize}
+
+

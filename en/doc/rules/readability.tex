@@ -1,44 +1,95 @@
-\subsection{Rules for readability}
+\subsection{Rules on Readability}
 
-All these rules are under category
-\cppid{readability}.
+All these rules are found under the \cppid{readability} category.
 
-Below, main applicable rules are described.
+\subsubsection{Applicable Rules}
+
+The main applicable rules are summarized below. Please note that there are many more
+rules in this category that are enabled. If you need a detailed explanation of any of them,
+you can consult the \textemph{clang-tidy} manual.
 
 \begin{itemize}
 
 \item \cppid{readability-avoid-const-params-in-decls}:
-No parameter shall be of a \cppkey{const} type.
-However, const reference parameters are allowed.
+\cppkey{const} type parameters shall not be allowed in function declarations.
+\cppkey{const} reference parameters shall be allowed.
 
 \item \cppid{readability-avoid-nested-conditional-operator}:
-No nested use of conditional operator (\cppkey{?:}) shall be allowed.
+The nested use of the conditional operator (\cppkey{?:}) shall not be allowed.
 
 \item \cppid{readability-braces-around-statements}:
-Body of\cppkey{if}, \cppkey{while} and \cppkey{for} statements
-shall be always enclosed in braces, even if it consists of a single statement.
+The body of \cppkey{if}, \cppkey{while}, and \cppkey{for} statements shall
+always be enclosed in braces, even if it is a single statement.
 
 \item \cppid{readability-const-return-type}:
-A function return type shall not include the \cppkey{const} qualifier.
+The return type of a function shall not include the \cppkey{const} qualifier.
+
+\item \cppid{readability-convert-member-functions-to-static}:
+Member functions that do not use any non-static members shall be qualified as
+\cppkey{static}.
+
+\item \cppid{readability-duplicate-include}:
+The duplicate inclusion of header files shall be avoided.
+
+\item \cppid{readability-else-after-return}:
+Constructs \cppkey{else} or \cppkey{else if} shall not be used after control flow interruptions
+(\cppkey{return}, \cppkey{break}, \cppkey{continue}, or \cppkey{throw}).
 
 \item \cppid{readability-function-cognitive-complexity}:
-Maximum cognitive complexity shall be \cppid{50}.
+The maximum cognitive complexity shall be \cppid{50}.
+
+The following options shall be used:
+
+\begin{lstlisting}
+readability-function-cognitive-complexity.Threshold: 50
+readability-function-cognitive-complexity.Threshold.DescribeBasicIncrements: true
+\end{lstlisting}
 
 \item \cppid{readability-function-size}:
-Maximum number of lines per function shall be \cppid{40}.
+The maximum number of lines per function shall be \cppid{40}.
+The maximum number of parameters per function shall be \cppid{4}.
 
-\item \cppid{readability-function-size}:
-Maximum number of parameters per function shall be \cppid{4}.
+The following options shall be used:
 
-\item \cppid{readability-identifier-length}:
-Minimum length for identifier names shall be 3 characters.
-An exception is loop counters with names \cppid{i}, \cppid{j} or \cppid{k}.
+\begin{lstlisting}
+readability-function-size.LineThreshold: 40
+readability-function-size.ParameterThreshold: 4
+\end{lstlisting}
 
 \item \cppid{readability-magic-numbers}:
-No \emph{magic numbers} shall be used in code.
-Instead, they will be defined as constants.
+\emph{Magic numbers} shall not be used in the code.
+Instead, appropriate constants shall be defined.
 
 \item \cppid{readability-make-member-function-const}:
-When a member function does not modify the object state, it shall be marked as \cppkey{const}.
+If a member function does not modify the object's state, it shall be marked as \cppkey{const}.
+
+\item \cppid{readability-operators-representation}:
+The use of alternate tokens for logical and bitwise operators shall be preferred:
+\cppkey{and}, \cppkey{and\_eq}, \cppkey{bitand}, \cppkey{bitor}, \cppkey{compl},
+\cppkey{not}, \cppkey{not\_eq}, \cppkey{or}, \cppkey{or\_eq}, \cppkey{xor},
+\cppkey{xor\_eq}.
+
+The following options shall be applied:
+
+\begin{lstlisting}
+readability-operators-representation.BinaryOperators: 'and;and_eq;bitand;bitor;or;or_eq;xor;xor_eq'
+readability-operators-representation.OverloadedOperators: 'and;and_eq;bitand;bitor;or;or_eq;xor;xor_eq'
+\end{lstlisting}
+
+\end{itemize}
+
+\subsubsection{Excluded Rules}
+
+The following rules shall not be applied:
+
+\begin{itemize}
+
+\item \cppid{readability-enum-initial-value}.
+\item \cppid{readability-identifier-length}.
+\item \cppid{readability-identifier-naming}.
+\item \cppid{readability-isolate-declaration}.
+\item \cppid{readability-math-missing-parentheses}.
+\item \cppid{readability-named-parameter}.
+\item \cppid{readability-redundant-access-specifiers}.
 
 \end{itemize}
