@@ -7,10 +7,17 @@ cppcoreguidelines-*,
 -cppcoreguidelines-non-private-member-variables-in-classes,
 modernize-*,
 -modernize-use-designated-initializers,
--modernize-use-trailing-return-type'
+-modernize-use-trailing-return-type,
 misc-*,
 performance-*,
 readability-*,
+-readability-enum-initial-value,
+-readability-identifier-length,
+-readability-identifier-naming,
+-readability-isolate-declaration,
+-readability-math-missing-parentheses,
+-readability-named-parameter,
+-readability-redundant-access-specifiers'
 
 CheckOptions:
   bugprone-assert-side-effect.AssertMacros: 'assert,Expects,Ensures'
@@ -22,6 +29,8 @@ CheckOptions:
   readability-function-cognitive-complexity.Threshold.DescribeBasicIncrements: true
   readability-function-size.LineThreshold: 40
   readability-function-size.ParameterThreshold: 4
+  readability-operators-representation.BinaryOperators: 'and;and_eq;bitand;bitor;or;or_eq;xor;xor_eq'
+  readability-operators-representation.OverloadedOperators: 'and;and_eq;bitand;bitor;or;or_eq;xor;xor_eq'
 
 WarningsAsErrors: '*'
 
