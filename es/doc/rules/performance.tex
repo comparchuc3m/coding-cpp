@@ -2,7 +2,12 @@
 
 Todas estas reglas se encuentran bajo la categoría \cppid{performance}.
 
-A continuación se resumen las principales reglas aplicables.
+\subsubsection{Reglas aplicables}
+
+A continuación se resumen las principales reglas aplicables. Por favor, ten en cuenta que hay muchas más
+reglas de esta categoría que están activadas. Si necesitas una explicación detallada sobre alguna de ellas,
+puedes consultar el manual de \textemph{clang-tidy}.
+
 
 \begin{itemize}
 
@@ -10,8 +15,10 @@ A continuación se resumen las principales reglas aplicables.
 Se evitará el uso de \cppid{std::endl}. 
 En su lugar se usará el carácter \cppstr{'\textbackslash{}n'}
 
-\item \cppid{performance-enum-size}:
-Siempre se especificará el tamaño de los tipos enumerados.
+\item \cppid{performance-for-range-copy}:
+En los \textmark{bucles-for basados en rango} se evitará copiar la variable de
+bucle en cada iteración, si tiene una operación de copia costosa. En ese caso
+se tomará la variable por referencia constante.
 
 \item \cppid{performance-no-int-to-ptr}:
 Se evitarán las conversiones de tipos integrales a puntero.
@@ -21,5 +28,15 @@ Se evitará la promoción implícita de \cppkey{float} a \cppkey{double} en
 invocaciones a la biblioteca matemática de C (p. ej. \cppid{sin()}).
 En su lugar se invocará a la correspondiente función de la biblioteca
 matemática de C++ (p. ej. \cppid{std::sin()}.
+
+\end{itemize}
+
+\subsubsection{Reglas excluidas}
+
+No son de aplicación las siguientes reglas.
+
+\begin{itemize}
+
+\item \cppid{performance-enum-size}.
 
 \end{itemize}
