@@ -48,8 +48,10 @@ bugprone-implicit-widening-of-multiplication-result.IgnoreConstantIntExpr: false
 Se evitarán las conversiones implícitas en las expresiones de cálculo.
 
 \item \cppid{bugprone-narrowing-conversions}:
-Se evitarán la conversiones estrechadoras que puedan dar lugar a pérdida
-de información.
+Se evitarán la conversiones de estrechamiento que puedan dar lugar a pérdida
+de información. Si es necesario se utilizará la función de la biblioteca
+\textemph{GLS} para conversiones de estrechamiento:
+\cppid{gsl::narrow<tipo>(valor)}.
 
 \item \cppid{bugprone-switch-missing-default-case}:
 Una sentencia \cppkey{switch} siempre tendrá una alternativa \cppkey{default},
