@@ -18,7 +18,10 @@ readability-*,
 -readability-isolate-declaration,
 -readability-math-missing-parentheses,
 -readability-named-parameter,
--readability-redundant-access-specifiers'
+-readability-redundant-access-specifiers,
+-misc-no-recursion,
+-misc-non-private-member-variables-in-classes,
+-misc-use-internal-linkage'
 
 CheckOptions:
   bugprone-assert-side-effect.AssertMacros: 'assert,Expects,Ensures'
