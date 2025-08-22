@@ -2,19 +2,41 @@
 
 Todas estas reglas se encuentran bajo la categoría \cppid{modernize}.
 
-\textbad{EXCEPCIÓN}: No se activarán la siguiente regla:
-\begin{itemize}
+\subsubsection{Reglas aplicables}
 
-\item \cppid{modernize-use-trailing-return-type}.
-
-\end{itemize}
-
-A continuación se resumen las principales reglas aplicables.
+A continuación se resumen las principales reglas aplicables. Por favor, ten en cuenta que hay muchas más
+reglas de esta categoría que están activadas. Si necesitas una explicación detallada sobre alguna de ellas,
+puedes consultar el manual de \textemph{clang-tidy}.
 
 \begin{itemize}
+
+\item \cppid{modernize-avoid-bind}:
+Se preferirá el uso de \textmark{expresiones lambda} en vez de la función
+de biblioteca \cppid{std::bind()}.
+
+\item \cppid{modernize-avoid-c-arrays}:
+No se utilizarán arrays primitivos (también conocidos como arrays tipo C, por
+provenir de ese lenguaje).
+
+\textbad{Nota}: Si necesitas una colección de valores, puedes usar
+\cppid{std::array} (para tamaño fijo conocido en tiempo de compilación) o bien
+\cppid{std::vector}. Si necesitas una cadena de caracteres, puedes usar los
+tipos \cppid{std::string} y \cppid{string\_view}.
 
 \item \cppid{modernize-deprecated-headers}:
-Se requieren solamente archivos de cabecera de C++.
+No se utilizarán archivos de cabecera que provienen del lenguaje C y que están
+obsoletos (p. ej. \cppid{<math.h>}). En su lugar se utilizarán los
+correspondientes archivos de cabecera de C++ (p. ej. \cppid{cmath}).
+
+Se utilizará la siguiente opción:
+
+\begin{lstlisting}
+modernize-deprecated-headers.CheckHeaderFile: true
+\end{lstlisting}
+
+\item \cppid{modernize-loop-convert}:
+Se preferirá siempre que sea posible el uso de \textmark{bucles-for basados en
+rango}.
 
 \item \cppid{modernize-make-shared}:
 No se iniciará un \cppid{shared\_ptr} a partir de \cppkey{new}.
@@ -24,9 +46,50 @@ Se sugiere el uso de \cppid{make\_shared}.
 No se iniciará un \cppid{unique\_ptr} a partir de \cppkey{new}.
 Se sugiere el uso de \cppid{make\_unique}.
 
+\item \cppid{modernize-pass-by-value}:
+Se preferirá el paso por valor y movimiento del valor copiado, en vez del paso
+por referencia constante seguido de una copia.
+
+\item \cppid{modernize-redundant-void-arg}:
+Se preferirá el uso de una función sin parámetros, en vez de una función con un
+parámetro de tipo \cppkey{void}, por ser redundante.
+
+\item \cppid{modernize-use-auto}:
+Se definirán las variables con el especificador de tipo \cppkey{auto} siempre
+que esto mejore la mantenibilidad del código.
+
+\item \cppid{modernize-use-integer-sign-comparison}:
+Se evitará la comparación entre un valor entero con signo y otro valor entero
+sin signo. En estos casos se usarán las funciones \cppid{cmp\_equal()},
+\cppid{cmp\_not\_equal()}, \cppid{cmp\_less()}, \cppid{cmp\_greater()},
+\cppid{cmp\_less\_equal()} o \cppid{cmp\_greater\_equal()}.
+
+\item \cppid{modernize-use-nodiscard}:
+Se marcarán como \cppkey{[[nodiscard]]} que devuelven valores que no se debería
+ignorar.
+
 \item \cppid{modernize-use-nullptr}:
 No se utilizará la macro \cppid{NULL}.
 En su lugar se usará \cppkey{nullptr}.
 
+\item \cppid{modernize-use-ranges}:
+Se preferirá el uso de los algoritmos bajo el espacio de nombres
+\cppid{std::ranges} en vez de los algoritmos bajo el espacio de nombres
+\cppid{std}. Por ejemplo, en vez de usar \cppid{std::sort(v.begin(), v.end())}
+se preferirá \cppid{std::ranges::sort(v)}.
+
+\item \cppid{modernize-use-using}:
+Se preferirá la definición de alias de tipos con \cppkey{using} frente
+\cppkey{typedef}.
 
 \end{itemize}
+
+\subsubsection{Reglas excluidas}
+
+\begin{itemize}
+
+\item \cppid{modernize-use-designated-initializers}.
+\item \cppid{modernize-use-trailing-return-type}.
+
+\end{itemize}
+

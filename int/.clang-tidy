@@ -6,6 +6,7 @@ cert-*,
 cppcoreguidelines-*,
 -cppcoreguidelines-non-private-member-variables-in-classes,
 modernize-*,
+-modernize-use-designated-initializers,
 -modernize-use-trailing-return-type'
 misc-*,
 performance-*,
