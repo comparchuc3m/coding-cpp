@@ -3,30 +3,95 @@
 All these rules are under category
 \cppid{modernize}.
 
-\textbad{EXCEPTION}: The following rule shall not enabled:
-\begin{itemize}
+\subsubsection{Applicable rules}
 
-\item \cppid{modernize-use-trailing-return-type}.
-
-\end{itemize}
-
-Below, main applicable rules are described.
+Below, main applicable rules are described. Please, note that there are many
+more rules from this category that are enabled. If you need a detailed
+explanation, you can consult the \textemph{clang-tidy} manual.
 
 \begin{itemize}
+
+\item \cppid{modernize-avoid-bind}:
+The use of \textmark{lambda expressions} shall be preferred over the
+\cppid{std::bind()} library function.
+
+\item \cppid{modernize-avoid-c-arrays}:
+Primitive arrays (also known as C-style arrays, as they originate from that
+language) shall not be used.
+
+\textbad{Note}: If you need a collection of values, you can use
+\cppid{std::array} (for a fixed size known at compile time) or
+\cppid{std::vector}. If you need a character string, you can use the
+\cppid{std::string} and \cppid{string\_view} types.
 
 \item \cppid{modernize-deprecated-headers}:
-Only C++ header files shall be used.
+Header files from the C language that are deprecated (e.g., \cppid{<math.h>})
+shall not be used. Instead, the corresponding C++ header files (e.g.,
+\cppid{cmath}) shall be used.
+
+The following option shall be used:
+
+\begin{lstlisting}
+modernize-deprecated-headers.CheckHeaderFile: true
+\end{lstlisting}
+
+\item \cppid{modernize-loop-convert}:
+The use of \textmark{range-based for loops} shall always be preferred whenever
+possible.
 
 \item \cppid{modernize-make-shared}:
-No \cppid{shared\_ptr} shall be initialized from \cppkey{new}.
-As an alternative, use \cppid{make\_shared}.
+A \cppid{shared\_ptr} shall not be initialized from \cppkey{new}.
+The use of \cppid{make\_shared} is suggested.
 
 \item \cppid{modernize-make-unique}:
-No \cppid{unique\_ptr} shall be initialized from \cppkey{new}.
-As an alternative, use \cppid{make\_unique}.
+A \cppid{unique\_ptr} shall not be initialized from \cppkey{new}.
+The use of \cppid{make\_unique} is suggested.
+
+\item \cppid{modernize-pass-by-value}:
+Passing by value and moving the copied value shall be preferred, over
+passing by constant reference followed by a copy.
+
+\item \cppid{modernize-redundant-void-arg}:
+The use of a function with no parameters shall be preferred, over a
+function with a \cppkey{void} parameter, as it is redundant.
+
+\item \cppid{modernize-use-auto}:
+Variables shall be defined with the \cppkey{auto} type specifier whenever it
+improves code maintainability.
+
+\item \cppid{modernize-use-integer-sign-comparison}:
+Comparison between a signed integer value and an unsigned integer value shall be
+avoided. In these cases, the \cppid{cmp\_equal()},
+\cppid{cmp\_not\_equal()}, \cppid{cmp\_less()}, \cppid{cmp\_greater()},
+\cppid{cmp\_less\_equal()} or \cppid{cmp\_greater\_equal()} functions shall be
+used.
+
+\item \cppid{modernize-use-nodiscard}:
+Functions that return values that should not be ignored shall be marked as
+\cppkey{[[nodiscard]]}.
 
 \item \cppid{modernize-use-nullptr}:
-Macro \cppid{NULL} shall not be used.
-As an alternative, use \cppkey{nullptr}.
+The \cppid{NULL} macro shall not be used.
+The \cppkey{nullptr} literal shall be used instead.
+
+\item \cppid{modernize-use-ranges}:
+The use of algorithms under the \cppid{std::ranges} namespace shall be
+preferred over algorithms under the \cppid{std} namespace. For example, instead
+of using \cppid{std::sort(v.begin(), v.end())}, \cppid{std::ranges::sort(v)}
+shall be preferred.
+
+\item \cppid{modernize-use-using}:
+Defining type aliases with \cppkey{using} shall be preferred over
+\cppkey{typedef}.
+\end{itemize}
+
+\subsubsection{Excluded rules}
+
+The following rules shall not be applied:
+
+\begin{itemize}
+
+\item \cppid{modernize-use-designated-initializers}.
+\item \cppid{modernize-use-trailing-return-type}.
 
 \end{itemize}
