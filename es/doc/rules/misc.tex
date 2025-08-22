@@ -2,7 +2,11 @@
 
 Todas estas reglas se encuentran bajo la categoría \cppid{misc}.
 
-A continuación se resumen las principales reglas aplicables.
+\subsubsection{Reglas aplicables}
+
+A continuación se resumen las principales reglas aplicables. Por favor, ten en cuenta que hay muchas más
+reglas de esta categoría que están activadas. Si necesitas una explicación detallada sobre alguna de ellas,
+puedes consultar el manual de \textemph{clang-tidy}.
 
 \begin{itemize}
 
@@ -13,17 +17,16 @@ Se evitará usar identificadores que sean muy similares y causen confusión.
 Se definirán como \cppkey{const} aquellas variables que no se modifican.
 
 \item \cppid{misc-definitions-in-headers}:
-No se definirán variables en archivos de cabecera.
+No se definirán variables en archivos de cabecera a menos que estén calificadas
+con \cppkey{extern} o \cppkey{inline}.
+No se definirán funciones en archivos de cabecera a menos que estén calificadas
+con \cppkey{inline}.
 
 \item \cppid{misc-header-include-cycle}:
 Se evitarán dependencias cíclicas entre archivos de cabecera.
 
 \item \cppid{misc-include-cleaner}:
 Se evitarán la inclusión de archivos de cabecera innecesarios.
-
-\item \cppid{misc-non-private-member-variables-in-classes}:
-Se requiere que los datos miembros sean privados a menos que se trate de
-una estructura con todos los miembros públicos.
 
 \item \cppid{misc-redundant-expression}:
 Se evitará el uso de expresiones redundantes.
@@ -33,5 +36,21 @@ Siempre que sea posible se preferirá \cppkey{static\_assert} sobre \cppid{asser
 
 \item \cppid{misc-throw-by-value-catch-by-reference}:
 Las excepciones se lanzarán por valor y se capturarán por referencia.
+
+\item \cppid{misc-use-anonymous-namespace}:
+Se preferirá colocar una función o una variable en un \textmark{espacio de
+nombres anónimo} en vez de definirlas como \cppkey{static}.
+
+\end{itemize}
+
+\subsubsection{Reglas excluidas}
+
+No son de aplicación las siguientes reglas.
+
+\begin{itemize}
+
+\item \cppid{misc-no-recursion}.
+\item \cppid{misc-non-private-member-variables-in-classes}.
+\item \cppid{misc-use-internal-linkage}.
 
 \end{itemize}
